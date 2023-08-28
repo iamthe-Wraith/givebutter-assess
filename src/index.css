@@ -23,9 +23,31 @@ body {
 }
 
 .pokedex__search-results {
+  margin-top: 1rem;
+  border: 2px solid red;
+  overflow: auto;
+  max-height: 500px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pokedex__search-results::-webkit-scrollbar {
+  display: none;
 }
 
 .pokedex__list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.pokedex__list-item:not(:last-child) {
+  border-bottom: 1px solid black;
+}
+
+.pokedex__list-item > div {
+  margin: 0 1rem;
 }
 
 .pokedex__details {
