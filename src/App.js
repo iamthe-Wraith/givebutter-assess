@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { fetchAllPokemon } from "./api";
 
 function App() {
-    const [pokemonIndex, setPokemonIndex] = useState([])
     const [pokemon, setPokemon] = useState([])
     const [searchValue, setSearchValue] = useState('')
     const [pokemonDetails, setPokemonDetails] = useState()
@@ -11,8 +10,11 @@ function App() {
         const fetchPokemon = async () => {
             const {results: pokemonList} = await fetchAllPokemon()
 
-            setPokemon(pokemonList)
-            setPokemonIndex(pokemonList)
+            setPokemon(
+                searchValue
+                    ? pokemonList.filter(monster => monster.name.includes(searchValue))
+                    : pokemonList
+            )
         }
 
         fetchPokemon().then(() => {
@@ -21,12 +23,8 @@ function App() {
     }, [searchValue])
 
     const onSearchValueChange = (event) => {
-        const value = event.target.value
+        const value = event.target.value.trim();
         setSearchValue(value)
-
-        setPokemon(
-            pokemonIndex.filter(monster => !monster.name.includes(value))
-        )
     }
 
     const onGetDetails = (name) => async () => {
