@@ -16,17 +16,26 @@ body {
 
 .pokedex__content {
   display: flex;
-  gap: 5rem;
+  flex-direction: column-reverse;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 5rem;
+  }
 }
 
 .pokedex__search-input {
+  margin-bottom: 1rem;
 }
 
 .pokedex__search-results {
-  margin-top: 1rem;
+  min-width: 15rem;
   border: 2px solid red;
+  border-radius: 0.25rem;
   overflow: auto;
-  max-height: 500px;
+  max-height: 50vh;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -51,4 +60,52 @@ body {
 }
 
 .pokedex__details {
+  display: flex;
+  min-width: 15rem;
+  min-height: 5rem;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 0.25rem;
+}
+
+.pokedex__details-loading {
+  justify-content: center;
+  align-items: center;
+}
+
+.pokedex__details-error {
+  justify-content: center;
+  align-items: center;
+  max-width: 15rem;
+  color: red;
+  border-color: red;
+}
+
+.pokedex__details-header {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pokedex__details-header-evos {
+  margin-bottom: 0;
+}
+
+.pokedex__details-col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pokedex__details-list {
+  margin: 0 0 1rem;
+}
+
+.pokedex__details-evos-chain {
+  display: flex;
+  gap: 1rem;
+  font-style: italic;
 }
