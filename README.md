@@ -46,8 +46,24 @@ When you are finished, please upload your completed work to your Github and invi
 
 Please take some time to answer the following questions. Your answers should go directly in this `readme`.
 
+
 - Given more time, what would you suggest for improving the performance of this app?
+
+The main suggestion I would make to improve the performance of this app would be to remove the call to retrieve the list of Pokemon from the `onChange` handler of the search input, and instead make that call only once, when the app is first loaded. I would then cache the results of that call, either in memory, or in something more persistent, like local storage (since the original 151 Pokemon will never change). By making the request only once, we can avoid making a request on every keystroke, and remove the delay between when the user enters a new search query, and when the results are displayed.
+
 
 - Is there anything you would consider doing if we were to go live with this app?
 
+There are several things I would consider doing with this app if it were to go live in a production environment.
+
+1. **Add linting and formatting**. This would help to improve the readability and maintainability of the codebase over time. I would also add a pre-commit hook to run the linter and formatter before committing code to the repo.
+2. **Add testing (unit, integration, component, and e2e)**. This would help to ensure that the codebase is stable and that new changes don't break existing functionality. I would also add a pre-push hook to run the tests before pushing code to the repo.
+3. **Docker-ize the app**. This would help to ensure that the app can be run in any environment, and would also help to ensure that the app is running in the same environment in production as it is in development.
+4. **Add CI/CD**. Using something like Github Actions, I would add a CI/CD pipeline to the repo to ensure that the app is built and tested before any merges are allowed or being deployed to production.
+5. **Styling**. Pokemon has a very unique style to everything they do, so I would want to update the styling of the application to match that familiar branding.
+6. **Add observability**. At the bare minimum, I would want to include some kind of logging service to log errors and other events that occur in the app. I would also want to add some kind of monitoring service to monitor the health of the app and alert us if something goes wrong. (*This would depend on the investment we intend on making into this app and how much we anticipate it scaling.*)
+
+
 - What was the most challenging aspect of this work for you (if at all)?
+
+There was a little bit of a gotcha in the retrieving of the evolution chains from the API that took me a second to figure out. From the parameter name, I made the mistake of assuming it took the Pokemon ID. But when that didn't work, I looked over the Pokemon API docs and found that there's a different ID for each evolution chain that needed to be used instead. Once I figured that out, I added the extra call needed to retrieve that ID, and from there I was good to go.
