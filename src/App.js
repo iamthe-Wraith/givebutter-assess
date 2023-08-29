@@ -7,27 +7,23 @@ const DetailsList = ({ title, items }) => (
     <div>
         <div className={'pokedex__details-header'}>{ title }</div>
         <ul className={'pokedex__details-list'}>
-            {items.map(item => (
-                <li key={item}>{item}</li>
-            ))}
+            {items.map(item => <li key={item}>{item}</li>)}
         </ul>
     </div>
 )
 
-const EvoChain = ({ chain }) => {
-    return (
-        <div className={'pokedex__details-evos-chain'}>
-            <div className={'pokedex__details-evos-chain-name'}>
-                { chain.species.name }
-            </div>
-            { chain.evolves_to.length > 0 && (
-                <div className={'pokedex__details-evos-chain-evos'}>
-                    { chain.evolves_to.map(evo => <EvoChain key={chain.species.name} chain={ evo } />) }
-                </div>
-            )}
+const EvoChain = ({ chain }) => (
+    <div className={'pokedex__details-evos-chain'}>
+        <div className={'pokedex__details-evos-chain-name'}>
+            { chain.species.name }
         </div>
-    )
-}
+        { chain.evolves_to.length > 0 && (
+            <div className={'pokedex__details-evos-chain-evos'}>
+                { chain.evolves_to.map(evo => <EvoChain key={chain.species.name} chain={ evo } />) }
+            </div>
+        )}
+    </div>
+)
 
 function App() {
     const [pokemon, setPokemon] = useState([])
